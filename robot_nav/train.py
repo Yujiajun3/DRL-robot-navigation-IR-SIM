@@ -1,5 +1,6 @@
 from models.TD3.TD3 import TD3
 from models.SAC.SAC import SAC
+from robot_nav.models.LLM.LLM import LLM
 from models.HCM.hardcoded_model import HCM
 from models.PPO.PPO import PPO
 
@@ -35,7 +36,7 @@ def main(args=None):
     )
     save_every = 10  # save the model every n training cycles
 
-    model = TD3(
+    model = LLM(
         state_dim=state_dim,
         action_dim=action_dim,
         max_action=max_action,
