@@ -137,12 +137,19 @@ class RolloutReplayBuffer(object):
             s2 (np.ndarray): Next state.
         """
         experience = (s, a, r, t, s2)
-        if t:
-            self.count += 1
-            self.buffer[-1].append(experience)
-            self.buffer.append([])
-        else:
-            self.buffer[-1].append(experience)
+        # if t:
+        #     self.count += 1
+        #     self.buffer[-1].append(experience)
+        #     self.buffer.append([])
+        # else:
+        self.buffer[-1].append(experience)
+
+    def new_episode(self):
+        """
+        Start new episode in the buffer
+        """
+        self.count += 1
+        self.buffer.append([])
 
     def size(self):
         """
@@ -173,8 +180,7 @@ class RolloutReplayBuffer(object):
             batch = random.sample(
                 list(itertools.islice(self.buffer, 0, len(self.buffer) - 1)), batch_size
             )
-
-        idx = [random.randint(0, len(b) - 1) for b in batch]
+        idx = [0 if len(b) ==1 else random.randint(0, len(b) - 1) for b in batch]
 
         s_batch = []
         s2_batch = []

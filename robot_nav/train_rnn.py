@@ -1,4 +1,5 @@
 from robot_nav.models.RCPG.RCPG import RCPG
+from robot_nav.models.tCPG.tCPG import TCPG
 from collections import deque
 
 import torch
@@ -37,7 +38,7 @@ def main(args=None):
 
     state_queue = deque(maxlen=history_len)
 
-    model = RCPG(
+    model = TCPG(
         state_dim=state_dim,
         action_dim=action_dim,
         max_action=max_action,
@@ -47,7 +48,7 @@ def main(args=None):
         rnn="gru",
     )  # instantiate a model
 
-    sim = SIM_ENV()  # instantiate environment
+    sim = SIM_ENV(disable_plotting=True)  # instantiate environment
     replay_buffer = get_buffer(
         model,
         sim,
@@ -93,7 +94,8 @@ def main(args=None):
 
         if (
             terminal or steps == max_steps
-        ):  # reset environment of terminal stat ereached, or max_steps were taken
+        ):  # reset environment of terminal state reached, or max_steps were taken
+            replay_buffer.new_episode()
             fill_state = True
             latest_scan, distance, cos, sin, collision, goal, a, reward = sim.reset()
             episode += 1
@@ -121,7 +123,6 @@ def main(args=None):
                 max_steps,
                 eval_episodes=nr_eval_episodes,
             )
-
 
 def evaluate(model, epoch, sim, history_len, max_steps, eval_episodes=10):
     print("..............................................")

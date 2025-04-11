@@ -4,6 +4,7 @@ import yaml
 import torch
 
 from robot_nav.models.RCPG.RCPG import RCPG
+from robot_nav.models.tCPG.tCPG import TCPG
 from robot_nav.replay_buffer import ReplayBuffer, RolloutReplayBuffer
 from robot_nav.models.PPO.PPO import PPO
 
@@ -146,7 +147,7 @@ def get_buffer(
     if isinstance(model, PPO):
         return model.buffer
 
-    if isinstance(model, RCPG):
+    if isinstance(model, RCPG) or isinstance(model, TCPG):
         replay_buffer = RolloutReplayBuffer(
             buffer_size=buffer_size, random_seed=random_seed, history_len=history_len
         )
