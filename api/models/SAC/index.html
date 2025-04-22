@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
       
 
@@ -367,7 +367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cnntd3/" class="md-nav__link">
+      <a href="../train.md" class="md-nav__link">
         
   
   
@@ -1203,6 +1203,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Path Planners
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Path Planners
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Path%20Planners/astar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A*
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1755,7 +1824,7 @@ It supports automatic entropy tuning, model saving/loading, and logging via Tens
                 <code>device</code>
             </td>
             <td>
-                  <code><span title="str">str</span></code>
+                  <code><span title="torch.device">device</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2485,7 +2554,7 @@ It supports automatic entropy tuning, model saving/loading, and logging via Tens
 <span class="sd">    Args:</span>
 <span class="sd">        state_dim (int): Dimension of the observation/state space.</span>
 <span class="sd">        action_dim (int): Dimension of the action space.</span>
-<span class="sd">        device (str): PyTorch device (e.g., &#39;cpu&#39; or &#39;cuda&#39;).</span>
+<span class="sd">        device (torch.device): PyTorch device (e.g., &#39;cpu&#39; or &#39;cuda&#39;).</span>
 <span class="sd">        max_action (float): Maximum magnitude of actions.</span>
 <span class="sd">        discount (float): Discount factor for rewards.</span>
 <span class="sd">        init_temperature (float): Initial entropy temperature.</span>
@@ -2537,7 +2606,7 @@ It supports automatic entropy tuning, model saving/loading, and logging via Tens
         <span class="bp">self</span><span class="o">.</span><span class="n">state_dim</span> <span class="o">=</span> <span class="n">state_dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action_dim</span> <span class="o">=</span> <span class="n">action_dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action_range</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">max_action</span><span class="p">,</span> <span class="n">max_action</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discount</span> <span class="o">=</span> <span class="n">discount</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">critic_tau</span> <span class="o">=</span> <span class="n">critic_tau</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">actor_update_frequency</span> <span class="o">=</span> <span class="n">actor_update_frequency</span>
