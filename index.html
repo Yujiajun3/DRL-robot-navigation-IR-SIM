@@ -824,6 +824,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/Path%20Planners/prm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PRM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/Path%20Planners/rrt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RRT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -874,8 +920,115 @@
 
 
 <h1 id="welcome-to-drl-robot-navigation-ir-sim">Welcome to DRL-robot-navigation-IR-SIM</h1>
+<p><strong>DRL Robot navigation in IR-SIM</strong></p>
 <p>Deep Reinforcement Learning algorithm implementation for simulated robot navigation in IR-SIM. Using 2D laser sensor data
 and information about the goal point a robot learns to navigate to a specified point in the environment.</p>
+<p><img alt="Example" src="https://github.com/reiniscimurs/DRL-robot-navigation-IR-SIM/blob/master/out.gif" /></p>
+<p><strong>Installation</strong></p>
+<ul>
+<li>Package versioning is managed with poetry \
+<code>pip install poetry</code></li>
+<li>Clone the repository \
+<code>git clone https://github.com/reiniscimurs/DRL-robot-navigation.git</code></li>
+<li>Navigate to the cloned location and install using poetry \
+<code>poetry install</code></li>
+</ul>
+<p><strong>Training the model</strong></p>
+<ul>
+<li>
+<p>Run the training by executing the train.py file \
+<code>poetry run python robot_nav/train.py</code></p>
+</li>
+<li>
+<p>To open tensorbord, in a new terminal execute \
+<code>tensorboard --logdir runs</code></p>
+</li>
+</ul>
+<p><strong>Sources</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: right;">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IR-SIM</td>
+<td style="text-align: center;">Light-weight robot simulator</td>
+<td style="text-align: right;">https://github.com/hanruihua/ir-sim</td>
+</tr>
+<tr>
+<td style="text-align: left;">PythonRobotics</td>
+<td style="text-align: center;">Python code collection of robotics algorithms (Path planning)</td>
+<td style="text-align: right;">https://github.com/AtsushiSakai/PythonRobotics</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Models</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Model</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: right;">Model                           Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TD3</td>
+<td style="text-align: center;">Twin Delayed Deep Deterministic Policy Gradient model</td>
+<td style="text-align: right;">https://github.com/reiniscimurs/DRL-Robot-Navigation-ROS2</td>
+</tr>
+<tr>
+<td style="text-align: left;">SAC</td>
+<td style="text-align: center;">Soft Actor-Critic model</td>
+<td style="text-align: right;">https://github.com/denisyarats/pytorch_sac</td>
+</tr>
+<tr>
+<td style="text-align: left;">PPO</td>
+<td style="text-align: center;">Proximal Policy Optimization model</td>
+<td style="text-align: right;">https://github.com/nikhilbarhate99/PPO-PyTorch</td>
+</tr>
+<tr>
+<td style="text-align: left;">DDPG</td>
+<td style="text-align: center;">Deep Deterministic Policy Gradient model</td>
+<td style="text-align: right;">Updated from TD3</td>
+</tr>
+<tr>
+<td style="text-align: left;">CNNTD3</td>
+<td style="text-align: center;">TD3 model with 1D CNN encoding of laser state</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">RCPG</td>
+<td style="text-align: center;">Recurrent Convolution Policy Gradient - adding recurrence layers (lstm/gru/rnn) to CNNTD3 model</td>
+<td style="text-align: right;">-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Max Upper Bound Models</strong></p>
+<p>Models that support the additional loss of Q values exceeding the maximal possible Q value in the episode. Q values that exceed this upper bound are used to calculate a loss for the model. This helps to control the overestimation of Q values in off-policy actor-critic networks.
+To enable max upper bound loss set <code>use_max_bound = True</code> when initializing a model.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TD3</td>
+</tr>
+<tr>
+<td style="text-align: left;">DDPG</td>
+</tr>
+<tr>
+<td style="text-align: left;">CNNTD3</td>
+</tr>
+</tbody>
+</table>
 
 
 

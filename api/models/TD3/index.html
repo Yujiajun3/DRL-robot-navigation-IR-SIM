@@ -1003,6 +1003,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Path%20Planners/prm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PRM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Path%20Planners/rrt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RRT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1393,7 +1439,7 @@ Output Layer: action_dim, Tanh</p>
 <span class="sd">            s (torch.Tensor): Input state tensor.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            torch.Tensor: Action output tensor after Tanh activation.</span>
+<span class="sd">            (torch.Tensor): Action output tensor after Tanh activation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_2</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
@@ -1470,10 +1516,11 @@ Output Layer: action_dim, Tanh</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="torch.Tensor">Tensor</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>torch.Tensor: Action output tensor after Tanh activation.</p>
+                <p>Action output tensor after Tanh activation.</p>
               </div>
             </td>
           </tr>
@@ -1504,7 +1551,7 @@ Output Layer: action_dim, Tanh</p>
 <span class="sd">        s (torch.Tensor): Input state tensor.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: Action output tensor after Tanh activation.</span>
+<span class="sd">        (torch.Tensor): Action output tensor after Tanh activation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_2</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
@@ -1722,7 +1769,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">            a (torch.Tensor): Input action tensor.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple:</span>
+<span class="sd">            (tuple):</span>
 <span class="sd">                - q1 (torch.Tensor): Output Q-value from the first critic network.</span>
 <span class="sd">                - q2 (torch.Tensor): Output Q-value from the second critic network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1822,13 +1869,14 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1882,7 +1930,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">        a (torch.Tensor): Input action tensor.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple:</span>
+<span class="sd">        (tuple):</span>
 <span class="sd">            - q1 (torch.Tensor): Output Q-value from the first critic network.</span>
 <span class="sd">            - q2 (torch.Tensor): Output Q-value from the second critic network.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2334,7 +2382,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">            add_noise (bool): Whether to add exploration noise.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.ndarray: The chosen action clipped to [-max_action, max_action].</span>
+<span class="sd">            (np.ndarray): The chosen action clipped to [-max_action, max_action].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
@@ -2351,7 +2399,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">            state (np.ndarray): The current environment state.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.ndarray: The deterministic action predicted by the actor.</span>
+<span class="sd">            (np.ndarray): The deterministic action predicted by the actor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -2377,7 +2425,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">        Train the TD3 agent using batches sampled from the replay buffer.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            replay_buffer: The replay buffer to sample experiences from.</span>
+<span class="sd">            replay_buffer (ReplayBuffer): The replay buffer to sample experiences from.</span>
 <span class="sd">            iterations (int): Number of training iterations to perform.</span>
 <span class="sd">            batch_size (int): Size of each mini-batch.</span>
 <span class="sd">            discount (float): Discount factor gamma for future rewards.</span>
@@ -2555,7 +2603,7 @@ Each Q-network takes both state and action as input and outputs a scalar Q-value
 <span class="sd">            action (list or np.ndarray): Last executed action [linear_vel, angular_vel].</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple:</span>
+<span class="sd">            (tuple):</span>
 <span class="sd">                - state (list): Prepared and normalized state vector.</span>
 <span class="sd">                - terminal (int): 1 if episode should terminate (goal or collision), else 0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3008,10 +3056,11 @@ It uses an Actor-Critic architecture with target networks and delayed policy upd
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.ndarray: The deterministic action predicted by the actor.</p>
+                <p>The deterministic action predicted by the actor.</p>
               </div>
             </td>
           </tr>
@@ -3040,7 +3089,7 @@ It uses an Actor-Critic architecture with target networks and delayed policy upd
 <span class="sd">        state (np.ndarray): The current environment state.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: The deterministic action predicted by the actor.</span>
+<span class="sd">        (np.ndarray): The deterministic action predicted by the actor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -3122,10 +3171,11 @@ It uses an Actor-Critic architecture with target networks and delayed policy upd
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.ndarray: The chosen action clipped to [-max_action, max_action].</p>
+                <p>The chosen action clipped to [-max_action, max_action].</p>
               </div>
             </td>
           </tr>
@@ -3160,7 +3210,7 @@ It uses an Actor-Critic architecture with target networks and delayed policy upd
 <span class="sd">        add_noise (bool): Whether to add exploration noise.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: The chosen action clipped to [-max_action, max_action].</span>
+<span class="sd">        (np.ndarray): The chosen action clipped to [-max_action, max_action].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -3431,13 +3481,14 @@ into a normalized state input matching the input dimension.</p>
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3519,7 +3570,7 @@ into a normalized state input matching the input dimension.</p>
 <span class="sd">        action (list or np.ndarray): Last executed action [linear_vel, angular_vel].</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple:</span>
+<span class="sd">        (tuple):</span>
 <span class="sd">            - state (list): Prepared and normalized state vector.</span>
 <span class="sd">            - terminal (int): 1 if episode should terminate (goal or collision), else 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3693,6 +3744,7 @@ into a normalized state input matching the input dimension.</p>
                 <code>replay_buffer</code>
             </td>
             <td>
+                  <code><span title="ReplayBuffer">ReplayBuffer</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4058,7 +4110,7 @@ into a normalized state input matching the input dimension.</p>
 <span class="sd">    Train the TD3 agent using batches sampled from the replay buffer.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        replay_buffer: The replay buffer to sample experiences from.</span>
+<span class="sd">        replay_buffer (ReplayBuffer): The replay buffer to sample experiences from.</span>
 <span class="sd">        iterations (int): Number of training iterations to perform.</span>
 <span class="sd">        batch_size (int): Size of each mini-batch.</span>
 <span class="sd">        discount (float): Discount factor gamma for future rewards.</span>
