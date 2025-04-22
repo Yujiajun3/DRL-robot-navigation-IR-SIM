@@ -363,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/train.md" class="md-nav__link">
+      <a href="../../models/cnntd3/" class="md-nav__link">
         
   
   
@@ -1666,7 +1666,8 @@
 <span class="normal">360</span>
 <span class="normal">361</span>
 <span class="normal">362</span>
-<span class="normal">363</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RRT</span><span class="p">:</span>
+<span class="normal">363</span>
+<span class="normal">364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RRT</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for RRT planning</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1678,12 +1679,12 @@
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                        Initialize Node</span>
+<span class="sd">            Initialize Node</span>
 
-<span class="sd">                        Args:</span>
-<span class="sd">                            x (float): x position of the node</span>
-<span class="sd">                            y (float): y position of the node</span>
-<span class="sd">                            &quot;&quot;&quot;</span>
+<span class="sd">            Args:</span>
+<span class="sd">                x (float): x position of the node</span>
+<span class="sd">                y (float): y position of the node</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">path_x</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1692,15 +1693,16 @@
 
     <span class="k">class</span><span class="w"> </span><span class="nc">AreaBounds</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">               Area Bounds</span>
-<span class="sd">                &quot;&quot;&quot;</span>
+<span class="sd">        Area Bounds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                    Initialize AreaBounds</span>
+<span class="sd">            Initialize AreaBounds</span>
 
-<span class="sd">                    Args:</span>
-<span class="sd">                        env (EnvBase): environment where the planning will take place</span>
-<span class="sd">                    &quot;&quot;&quot;</span>
+<span class="sd">            Args:</span>
+<span class="sd">                env (EnvBase): environment where the planning will take place</span>
+<span class="sd">            &quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">env</span><span class="o">.</span><span class="n">env_config</span><span class="o">.</span><span class="n">parse</span><span class="p">[</span><span class="s2">&quot;world&quot;</span><span class="p">][</span><span class="s2">&quot;width&quot;</span><span class="p">],</span>
@@ -1790,24 +1792,24 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">steer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">extend_length</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Generate a new node by steering from `from_node` towards `to_node`.</span>
+<span class="sd">        Generate a new node by steering from `from_node` towards `to_node`.</span>
 
-<span class="sd">            This method incrementally moves from `from_node` in the direction of `to_node`,</span>
-<span class="sd">            using a fixed step size (`self.path_resolution`) and not exceeding the</span>
-<span class="sd">            specified `extend_length`. The result is a new node that approximates a path</span>
-<span class="sd">            from the start node toward the goal, constrained by resolution and maximum</span>
-<span class="sd">            step distance.</span>
+<span class="sd">        This method incrementally moves from `from_node` in the direction of `to_node`,</span>
+<span class="sd">        using a fixed step size (`self.path_resolution`) and not exceeding the</span>
+<span class="sd">        specified `extend_length`. The result is a new node that approximates a path</span>
+<span class="sd">        from the start node toward the goal, constrained by resolution and maximum</span>
+<span class="sd">        step distance.</span>
 
-<span class="sd">            If the final position is within one resolution step of `to_node`, it snaps the</span>
-<span class="sd">            new node exactly to `to_node`.</span>
+<span class="sd">        If the final position is within one resolution step of `to_node`, it snaps the</span>
+<span class="sd">        new node exactly to `to_node`.</span>
 
-<span class="sd">            Args:</span>
-<span class="sd">                from_node (Node): The node from which to begin extending.</span>
-<span class="sd">                to_node (Node): The target node to steer toward.</span>
-<span class="sd">                extend_length (float, optional): The maximum length to extend. Defaults to infinity.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            from_node (Node): The node from which to begin extending.</span>
+<span class="sd">            to_node (Node): The target node to steer toward.</span>
+<span class="sd">            extend_length (float, optional): The maximum length to extend. Defaults to infinity.</span>
 
-<span class="sd">            Returns:</span>
-<span class="sd">                node (Node): A new node with updated position, path history (path_x, path_y),</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            node (Node): A new node with updated position, path history (path_x, path_y),</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">new_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">from_node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">from_node</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -1860,15 +1862,15 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">calc_dist_to_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                Calculate distance to goal</span>
+<span class="sd">        Calculate distance to goal</span>
 
-<span class="sd">                Args:</span>
-<span class="sd">                    x (float): x coordinate of the position</span>
-<span class="sd">                    y (float): y coordinate of the position</span>
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): x coordinate of the position</span>
+<span class="sd">            y (float): y coordinate of the position</span>
 
-<span class="sd">                Returns:</span>
-<span class="sd">                    distance (float): distance to the goal</span>
-<span class="sd">                &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            distance (float): distance to the goal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">x</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">y</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
@@ -1964,15 +1966,15 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">check_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">robot_radius</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                Check if node is acceptable - free of collisions</span>
+<span class="sd">        Check if node is acceptable - free of collisions</span>
 
-<span class="sd">                Args:</span>
-<span class="sd">                    node (Node): node to check</span>
-<span class="sd">                    robot_radius (float): robot radius</span>
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): node to check</span>
+<span class="sd">            robot_radius (float): robot radius</span>
 
-<span class="sd">                Returns:</span>
-<span class="sd">                    result (bool): True if there is no collision. False otherwise</span>
-<span class="sd">                &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            result (bool): True if there is no collision. False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
@@ -1984,16 +1986,16 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">check_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rr</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                Check positon for a collision</span>
+<span class="sd">        Check positon for a collision</span>
 
-<span class="sd">                Args:</span>
-<span class="sd">                    x (float): x value of the position</span>
-<span class="sd">                    y (float): y value of the position</span>
-<span class="sd">                    rr (float): robot radius</span>
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): x value of the position</span>
+<span class="sd">            y (float): y value of the position</span>
+<span class="sd">            rr (float): robot radius</span>
 
-<span class="sd">                Returns:</span>
-<span class="sd">                    result (bool): True if there is a collision. False otherwise</span>
-<span class="sd">                &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            result (bool): True if there is a collision. False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">node_position</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="n">rr</span><span class="p">}</span>
         <span class="n">gf</span> <span class="o">=</span> <span class="n">GeometryFactory</span><span class="o">.</span><span class="n">create_geometry</span><span class="p">(</span><span class="o">**</span><span class="n">shape</span><span class="p">)</span>
@@ -2063,17 +2065,19 @@
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AreaBounds</span><span class="p">:</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AreaBounds</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">           Area Bounds</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    Area Bounds</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                Initialize AreaBounds</span>
+<span class="sd">        Initialize AreaBounds</span>
 
-<span class="sd">                Args:</span>
-<span class="sd">                    env (EnvBase): environment where the planning will take place</span>
-<span class="sd">                &quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            env (EnvBase): environment where the planning will take place</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">env</span><span class="o">.</span><span class="n">env_config</span><span class="o">.</span><span class="n">parse</span><span class="p">[</span><span class="s2">&quot;world&quot;</span><span class="p">][</span><span class="s2">&quot;width&quot;</span><span class="p">],</span>
@@ -2141,8 +2145,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
-<span class="normal">49</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
@@ -2152,13 +2155,14 @@
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Initialize AreaBounds</span>
+<span class="sd">    Initialize AreaBounds</span>
 
-<span class="sd">            Args:</span>
-<span class="sd">                env (EnvBase): environment where the planning will take place</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        env (EnvBase): environment where the planning will take place</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">env</span><span class="o">.</span><span class="n">env_config</span><span class="o">.</span><span class="n">parse</span><span class="p">[</span><span class="s2">&quot;world&quot;</span><span class="p">][</span><span class="s2">&quot;width&quot;</span><span class="p">],</span>
@@ -2226,12 +2230,12 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                    Initialize Node</span>
+<span class="sd">        Initialize Node</span>
 
-<span class="sd">                    Args:</span>
-<span class="sd">                        x (float): x position of the node</span>
-<span class="sd">                        y (float): y position of the node</span>
-<span class="sd">                        &quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): x position of the node</span>
+<span class="sd">            y (float): y position of the node</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path_x</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2329,12 +2333,12 @@
 <span class="normal">41</span>
 <span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">                Initialize Node</span>
+<span class="sd">    Initialize Node</span>
 
-<span class="sd">                Args:</span>
-<span class="sd">                    x (float): x position of the node</span>
-<span class="sd">                    y (float): y position of the node</span>
-<span class="sd">                    &quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (float): x position of the node</span>
+<span class="sd">        y (float): y position of the node</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">path_x</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2482,8 +2486,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
-<span class="normal">62</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
@@ -2516,7 +2519,8 @@
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">95</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">env</span><span class="p">,</span>
     <span class="n">robot_radius</span><span class="p">,</span>
@@ -2643,8 +2647,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">212</span>
-<span class="normal">213</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
 <span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span>
@@ -2656,17 +2659,18 @@
 <span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
-<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calc_dist_to_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="normal">225</span>
+<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calc_dist_to_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Calculate distance to goal</span>
+<span class="sd">    Calculate distance to goal</span>
 
-<span class="sd">            Args:</span>
-<span class="sd">                x (float): x coordinate of the position</span>
-<span class="sd">                y (float): y coordinate of the position</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (float): x coordinate of the position</span>
+<span class="sd">        y (float): y coordinate of the position</span>
 
-<span class="sd">            Returns:</span>
-<span class="sd">                distance (float): distance to the goal</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        distance (float): distance to the goal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">x</span>
     <span class="n">dy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">y</span>
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
@@ -2762,8 +2766,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">316</span>
-<span class="normal">317</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">317</span>
 <span class="normal">318</span>
 <span class="normal">319</span>
 <span class="normal">320</span>
@@ -2780,17 +2783,18 @@
 <span class="normal">331</span>
 <span class="normal">332</span>
 <span class="normal">333</span>
-<span class="normal">334</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">check_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">robot_radius</span><span class="p">):</span>
+<span class="normal">334</span>
+<span class="normal">335</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">check_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">robot_radius</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Check if node is acceptable - free of collisions</span>
+<span class="sd">    Check if node is acceptable - free of collisions</span>
 
-<span class="sd">            Args:</span>
-<span class="sd">                node (Node): node to check</span>
-<span class="sd">                robot_radius (float): robot radius</span>
+<span class="sd">    Args:</span>
+<span class="sd">        node (Node): node to check</span>
+<span class="sd">        robot_radius (float): robot radius</span>
 
-<span class="sd">            Returns:</span>
-<span class="sd">                result (bool): True if there is no collision. False otherwise</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        result (bool): True if there is no collision. False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
@@ -2907,8 +2911,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">336</span>
-<span class="normal">337</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">337</span>
 <span class="normal">338</span>
 <span class="normal">339</span>
 <span class="normal">340</span>
@@ -2926,18 +2929,19 @@
 <span class="normal">352</span>
 <span class="normal">353</span>
 <span class="normal">354</span>
-<span class="normal">355</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">check_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rr</span><span class="p">):</span>
+<span class="normal">355</span>
+<span class="normal">356</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">check_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Check positon for a collision</span>
+<span class="sd">    Check positon for a collision</span>
 
-<span class="sd">            Args:</span>
-<span class="sd">                x (float): x value of the position</span>
-<span class="sd">                y (float): y value of the position</span>
-<span class="sd">                rr (float): robot radius</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (float): x value of the position</span>
+<span class="sd">        y (float): y value of the position</span>
+<span class="sd">        rr (float): robot radius</span>
 
-<span class="sd">            Returns:</span>
-<span class="sd">                result (bool): True if there is a collision. False otherwise</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        result (bool): True if there is a collision. False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">node_position</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="n">rr</span><span class="p">}</span>
     <span class="n">gf</span> <span class="o">=</span> <span class="n">GeometryFactory</span><span class="o">.</span><span class="n">create_geometry</span><span class="p">(</span><span class="o">**</span><span class="n">shape</span><span class="p">)</span>
@@ -3022,8 +3026,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
-<span class="normal">193</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span>
 <span class="normal">196</span>
@@ -3040,7 +3043,8 @@
 <span class="normal">207</span>
 <span class="normal">208</span>
 <span class="normal">209</span>
-<span class="normal">210</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_final_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_ind</span><span class="p">):</span>
+<span class="normal">210</span>
+<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_final_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_ind</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate the final path</span>
 
@@ -3104,8 +3108,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">227</span>
-<span class="normal">228</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
@@ -3118,7 +3121,8 @@
 <span class="normal">238</span>
 <span class="normal">239</span>
 <span class="normal">240</span>
-<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_random_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">241</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_random_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create random node</span>
 
@@ -3283,8 +3287,7 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 97</span>
-<span class="normal"> 98</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
@@ -3326,7 +3329,8 @@
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">planning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">goal_x</span><span class="p">,</span> <span class="n">goal_y</span><span class="p">,</span> <span class="n">show_animation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">planning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">goal_x</span><span class="p">,</span> <span class="n">goal_y</span><span class="p">,</span> <span class="n">show_animation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    rrt path search</span>
 
@@ -3485,8 +3489,7 @@ new node exactly to <code>to_node</code>.</p>
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/path_planners/rrt.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
-<span class="normal">143</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -3533,26 +3536,27 @@ new node exactly to <code>to_node</code>.</p>
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">steer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">extend_length</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
+<span class="normal">190</span>
+<span class="normal">191</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">steer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">extend_length</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate a new node by steering from `from_node` towards `to_node`.</span>
+<span class="sd">    Generate a new node by steering from `from_node` towards `to_node`.</span>
 
-<span class="sd">        This method incrementally moves from `from_node` in the direction of `to_node`,</span>
-<span class="sd">        using a fixed step size (`self.path_resolution`) and not exceeding the</span>
-<span class="sd">        specified `extend_length`. The result is a new node that approximates a path</span>
-<span class="sd">        from the start node toward the goal, constrained by resolution and maximum</span>
-<span class="sd">        step distance.</span>
+<span class="sd">    This method incrementally moves from `from_node` in the direction of `to_node`,</span>
+<span class="sd">    using a fixed step size (`self.path_resolution`) and not exceeding the</span>
+<span class="sd">    specified `extend_length`. The result is a new node that approximates a path</span>
+<span class="sd">    from the start node toward the goal, constrained by resolution and maximum</span>
+<span class="sd">    step distance.</span>
 
-<span class="sd">        If the final position is within one resolution step of `to_node`, it snaps the</span>
-<span class="sd">        new node exactly to `to_node`.</span>
+<span class="sd">    If the final position is within one resolution step of `to_node`, it snaps the</span>
+<span class="sd">    new node exactly to `to_node`.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            from_node (Node): The node from which to begin extending.</span>
-<span class="sd">            to_node (Node): The target node to steer toward.</span>
-<span class="sd">            extend_length (float, optional): The maximum length to extend. Defaults to infinity.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        from_node (Node): The node from which to begin extending.</span>
+<span class="sd">        to_node (Node): The target node to steer toward.</span>
+<span class="sd">        extend_length (float, optional): The maximum length to extend. Defaults to infinity.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            node (Node): A new node with updated position, path history (path_x, path_y),</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        node (Node): A new node with updated position, path history (path_x, path_y),</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">new_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">from_node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">from_node</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
