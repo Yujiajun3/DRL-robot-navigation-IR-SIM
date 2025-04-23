@@ -2265,7 +2265,7 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
 <span class="sd">            add_noise (bool): Whether to add exploration noise to the action.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.ndarray: The selected action.</span>
+<span class="sd">            (np.ndarray): The selected action.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
@@ -2282,7 +2282,7 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
 <span class="sd">            state (np.ndarray): Input state.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.ndarray: Action predicted by the actor network.</span>
+<span class="sd">            (np.ndarray): Action predicted by the actor network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Function to get the action from the actor</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
@@ -2485,7 +2485,7 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
 <span class="sd">            action (list or np.ndarray): Last action taken [lin_vel, ang_vel].</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple:</span>
+<span class="sd">            (tuple):</span>
 <span class="sd">                - state (list): Normalized and concatenated state vector.</span>
 <span class="sd">                - terminal (int): Terminal flag (1 if collision or goal, else 0).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2576,10 +2576,11 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.ndarray: Action predicted by the actor network.</p>
+                <p>Action predicted by the actor network.</p>
               </div>
             </td>
           </tr>
@@ -2609,7 +2610,7 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
 <span class="sd">        state (np.ndarray): Input state.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: Action predicted by the actor network.</span>
+<span class="sd">        (np.ndarray): Action predicted by the actor network.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Function to get the action from the actor</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
@@ -2692,10 +2693,11 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.ndarray: The selected action.</p>
+                <p>The selected action.</p>
               </div>
             </td>
           </tr>
@@ -2730,7 +2732,7 @@ observations (e.g., LiDAR) are used for navigation tasks.</p>
 <span class="sd">        add_noise (bool): Whether to add exploration noise to the action.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: The selected action.</span>
+<span class="sd">        (np.ndarray): The selected action.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -3000,13 +3002,14 @@ a format suitable for learning.</p>
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3072,7 +3075,7 @@ a format suitable for learning.</p>
 <span class="sd">        action (list or np.ndarray): Last action taken [lin_vel, ang_vel].</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple:</span>
+<span class="sd">        (tuple):</span>
 <span class="sd">            - state (list): Normalized and concatenated state vector.</span>
 <span class="sd">            - terminal (int): Terminal flag (1 if collision or goal, else 0).</span>
 <span class="sd">    &quot;&quot;&quot;</span>

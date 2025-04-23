@@ -1423,7 +1423,7 @@ to ensure the output actions are in the range [-1, 1].</p>
 <span class="sd">            s (torch.Tensor): Input state tensor of shape (batch_size, state_dim).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            torch.Tensor: Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</span>
+<span class="sd">            (torch.Tensor): Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_2</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
@@ -1500,10 +1500,11 @@ to ensure the output actions are in the range [-1, 1].</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="torch.Tensor">Tensor</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>torch.Tensor: Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</p>
+                <p>Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</p>
               </div>
             </td>
           </tr>
@@ -1534,7 +1535,7 @@ to ensure the output actions are in the range [-1, 1].</p>
 <span class="sd">        s (torch.Tensor): Input state tensor of shape (batch_size, state_dim).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</span>
+<span class="sd">        (torch.Tensor): Output action tensor of shape (batch_size, action_dim), scaled to [-1, 1].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_2</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
@@ -1733,7 +1734,7 @@ another linear layer to predict a scalar Q-value.</p>
 <span class="sd">            a (torch.Tensor): Action tensor of shape (batch_size, action_dim).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            torch.Tensor: Q-value tensor of shape (batch_size, 1).</span>
+<span class="sd">            (torch.Tensor): Q-value tensor of shape (batch_size, 1).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer_2_s</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
@@ -1831,10 +1832,11 @@ another linear layer to predict a scalar Q-value.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="torch.Tensor">Tensor</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>torch.Tensor: Q-value tensor of shape (batch_size, 1).</p>
+                <p>Q-value tensor of shape (batch_size, 1).</p>
               </div>
             </td>
           </tr>
@@ -1872,7 +1874,7 @@ another linear layer to predict a scalar Q-value.</p>
 <span class="sd">        a (torch.Tensor): Action tensor of shape (batch_size, action_dim).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: Q-value tensor of shape (batch_size, 1).</span>
+<span class="sd">        (torch.Tensor): Q-value tensor of shape (batch_size, 1).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_1</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">layer_2_s</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
@@ -2523,7 +2525,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">            add_noise (bool): Whether to add exploration noise to the action.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.array: Action selected by the actor network.</span>
+<span class="sd">            (np.array): Action selected by the actor network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
@@ -2540,7 +2542,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">            state (np.array): Environment state.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.array: Action values as output by the actor network.</span>
+<span class="sd">            (np.array): Action values as output by the actor network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -2566,7 +2568,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">        Trains the actor and critic networks using a replay buffer and soft target updates.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            replay_buffer (object): Replay buffer object with a sample_batch method.</span>
+<span class="sd">            replay_buffer (ReplayBuffer): Replay buffer object with a sample_batch method.</span>
 <span class="sd">            iterations (int): Number of training iterations.</span>
 <span class="sd">            batch_size (int): Size of each training batch.</span>
 <span class="sd">            discount (float): Discount factor for future rewards.</span>
@@ -2738,7 +2740,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">            action (list or np.array): The action taken in the previous step.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: (state vector, terminal flag)</span>
+<span class="sd">            (tuple): (state vector, terminal flag)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -2839,10 +2841,11 @@ and state preparation for a reinforcement learning agent, specifically designed 
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.array">array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.array: Action values as output by the actor network.</p>
+                <p>Action values as output by the actor network.</p>
               </div>
             </td>
           </tr>
@@ -2871,7 +2874,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">        state (np.array): Environment state.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.array: Action values as output by the actor network.</span>
+<span class="sd">        (np.array): Action values as output by the actor network.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -2953,10 +2956,11 @@ and state preparation for a reinforcement learning agent, specifically designed 
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.array">array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.array: Action selected by the actor network.</p>
+                <p>Action selected by the actor network.</p>
               </div>
             </td>
           </tr>
@@ -2991,7 +2995,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">        add_noise (bool): Whether to add exploration noise to the action.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.array: Action selected by the actor network.</span>
+<span class="sd">        (np.array): Action selected by the actor network.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">add_noise</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -3260,13 +3264,14 @@ and state preparation for a reinforcement learning agent, specifically designed 
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3337,7 +3342,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">        action (list or np.array): The action taken in the previous step.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: (state vector, terminal flag)</span>
+<span class="sd">        (tuple): (state vector, terminal flag)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -3509,7 +3514,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
                 <code>replay_buffer</code>
             </td>
             <td>
-                  <code><span title="object">object</span></code>
+                  <code><span title="ReplayBuffer">ReplayBuffer</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3872,7 +3877,7 @@ and state preparation for a reinforcement learning agent, specifically designed 
 <span class="sd">    Trains the actor and critic networks using a replay buffer and soft target updates.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        replay_buffer (object): Replay buffer object with a sample_batch method.</span>
+<span class="sd">        replay_buffer (ReplayBuffer): Replay buffer object with a sample_batch method.</span>
 <span class="sd">        iterations (int): Number of training iterations.</span>
 <span class="sd">        batch_size (int): Size of each training batch.</span>
 <span class="sd">        discount (float): Discount factor for future rewards.</span>

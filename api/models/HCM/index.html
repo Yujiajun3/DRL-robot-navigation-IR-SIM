@@ -1181,9 +1181,10 @@
               Bases: <code><span title="object">object</span></code></p>
 
 
-        <p>A class representing a hybrid control model (HCM) for a robot's navigation system.</p>
+        <p>A class representing a Hard-Coded model (HCM) for a robot's navigation system.</p>
 <p>This class contains methods for generating actions based on the robot's state, preparing state
-representations, training (placeholder method), saving/loading models, and logging experiences.</p>
+representations, training (placeholder method), saving/loading models, and logging experiences.
+The method is suboptimal in order to collect collisions for pre-training of DRL models.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -1473,12 +1474,14 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">195</span>
 <span class="normal">196</span>
 <span class="normal">197</span>
-<span class="normal">198</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HCM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="normal">198</span>
+<span class="normal">199</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HCM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class representing a hybrid control model (HCM) for a robot&#39;s navigation system.</span>
+<span class="sd">    A class representing a Hard-Coded model (HCM) for a robot&#39;s navigation system.</span>
 
 <span class="sd">    This class contains methods for generating actions based on the robot&#39;s state, preparing state</span>
 <span class="sd">    representations, training (placeholder method), saving/loading models, and logging experiences.</span>
+<span class="sd">    The method is suboptimal in order to collect collisions for pre-training of DRL models.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        max_action (float): The maximum possible action value.</span>
@@ -1526,7 +1529,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">            add_noise (bool): Whether to add noise to the action for exploration.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list: The computed action [linear velocity, angular velocity].</span>
+<span class="sd">            (list): The computed action [linear velocity, angular velocity].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sin</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">cos</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
@@ -1566,7 +1569,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">        Placeholder method for training the hybrid control model.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            replay_buffer (object): The replay buffer containing past experiences.</span>
+<span class="sd">            replay_buffer (object): The replay buffer containing experiences.</span>
 <span class="sd">            iterations (int): The number of training iterations.</span>
 <span class="sd">            batch_size (int): The batch size for training.</span>
 <span class="sd">            discount (float): The discount factor for future rewards.</span>
@@ -1620,7 +1623,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">            action (list): The action taken by the robot, [linear velocity, angular velocity].</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: A tuple containing the prepared state and a terminal flag (1 if terminal state, 0 otherwise).</span>
+<span class="sd">            (tuple): A tuple containing the prepared state and a terminal flag (1 if terminal state, 0 otherwise).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -1789,8 +1792,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -1813,7 +1815,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
-<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">state_dim</span><span class="p">,</span>
     <span class="n">max_action</span><span class="p">,</span>
@@ -1910,13 +1913,14 @@ representations, training (placeholder method), saving/loading models, and loggi
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>list</code></td>            <td>
+            <td>
+                  <code><span title="list">list</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1930,8 +1934,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
-<span class="normal">53</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
@@ -1962,7 +1965,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
-<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">add_noise</span><span class="p">):</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">add_noise</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the action to be taken based on the current state of the robot.</span>
 
@@ -1972,7 +1976,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">        add_noise (bool): Whether to add noise to the action for exploration.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: The computed action [linear velocity, angular velocity].</span>
+<span class="sd">        (list): The computed action [linear velocity, angular velocity].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sin</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
     <span class="n">cos</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
@@ -2069,8 +2073,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
-<span class="normal">130</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
@@ -2080,7 +2083,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Placeholder method to load a model state from a file.</span>
 
@@ -2243,13 +2247,14 @@ representations, training (placeholder method), saving/loading models, and loggi
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2263,8 +2268,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
-<span class="normal">143</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -2319,7 +2323,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">195</span>
 <span class="normal">196</span>
 <span class="normal">197</span>
-<span class="normal">198</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">prepare_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latest_scan</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">collision</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+<span class="normal">198</span>
+<span class="normal">199</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">prepare_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latest_scan</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">collision</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Prepare the state representation for the model based on the current environment.</span>
 
@@ -2333,7 +2338,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">        action (list): The action taken by the robot, [linear velocity, angular velocity].</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: A tuple containing the prepared state and a terminal flag (1 if terminal state, 0 otherwise).</span>
+<span class="sd">        (tuple): A tuple containing the prepared state and a terminal flag (1 if terminal state, 0 otherwise).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -2450,8 +2455,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
-<span class="normal">117</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
@@ -2461,7 +2465,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+<span class="normal">127</span>
+<span class="normal">128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Placeholder method to save the current model state to a file.</span>
 
@@ -2513,7 +2518,7 @@ representations, training (placeholder method), saving/loading models, and loggi
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The replay buffer containing past experiences.</p>
+                <p>The replay buffer containing experiences.</p>
               </div>
             </td>
             <td>
@@ -2643,8 +2648,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/models/HCM/hardcoded_model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
-<span class="normal"> 88</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
 <span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
@@ -2670,7 +2674,8 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span>
+<span class="normal">114</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">replay_buffer</span><span class="p">,</span>
     <span class="n">iterations</span><span class="p">,</span>
@@ -2685,7 +2690,7 @@ representations, training (placeholder method), saving/loading models, and loggi
 <span class="sd">    Placeholder method for training the hybrid control model.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        replay_buffer (object): The replay buffer containing past experiences.</span>
+<span class="sd">        replay_buffer (object): The replay buffer containing experiences.</span>
 <span class="sd">        iterations (int): The number of training iterations.</span>
 <span class="sd">        batch_size (int): The batch size for training.</span>
 <span class="sd">        discount (float): The discount factor for future rewards.</span>

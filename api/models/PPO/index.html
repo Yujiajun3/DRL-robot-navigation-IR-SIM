@@ -1682,7 +1682,7 @@
 <span class="sd">            sample (bool): Whether to sample from the action distribution or use mean.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[Tensor, Tensor, Tensor]: Sampled (or mean) action, log probability, and state value.</span>
+<span class="sd">            (Tuple[Tensor, Tensor, Tensor]): Sampled (or mean) action, log probability, and state value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">action_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="n">cov_mat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_var</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1708,7 +1708,7 @@
 <span class="sd">            action (Tensor): Batch of actions.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[Tensor, Tensor, Tensor]: Action log probabilities, state values, and distribution entropy.</span>
+<span class="sd">            (Tuple[Tensor, Tensor, Tensor]): Action log probabilities, state values, and distribution entropy.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">action_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
@@ -2002,10 +2002,11 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="Tuple">Tuple</span>[<span title="Tensor">Tensor</span>, <span title="Tensor">Tensor</span>, <span title="Tensor">Tensor</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Tuple[Tensor, Tensor, Tensor]: Sampled (or mean) action, log probability, and state value.</p>
+                <p>Sampled (or mean) action, log probability, and state value.</p>
               </div>
             </td>
           </tr>
@@ -2048,7 +2049,7 @@
 <span class="sd">        sample (bool): Whether to sample from the action distribution or use mean.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple[Tensor, Tensor, Tensor]: Sampled (or mean) action, log probability, and state value.</span>
+<span class="sd">        (Tuple[Tensor, Tensor, Tensor]): Sampled (or mean) action, log probability, and state value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">action_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
     <span class="n">cov_mat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_var</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2142,10 +2143,11 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="Tuple">Tuple</span>[<span title="Tensor">Tensor</span>, <span title="Tensor">Tensor</span>, <span title="Tensor">Tensor</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Tuple[Tensor, Tensor, Tensor]: Action log probabilities, state values, and distribution entropy.</p>
+                <p>Action log probabilities, state values, and distribution entropy.</p>
               </div>
             </td>
           </tr>
@@ -2189,7 +2191,7 @@
 <span class="sd">        action (Tensor): Batch of actions.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple[Tensor, Tensor, Tensor]: Action log probabilities, state values, and distribution entropy.</span>
+<span class="sd">        (Tuple[Tensor, Tensor, Tensor]): Action log probabilities, state values, and distribution entropy.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">action_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
@@ -3028,7 +3030,7 @@
 <span class="sd">            add_noise (bool): Whether to sample from the distribution (True) or use the deterministic mean (False).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            np.ndarray: Sampled action.</span>
+<span class="sd">            (np.ndarray): Sampled action.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -3048,7 +3050,7 @@
 <span class="sd">        Train the policy and value function using PPO loss based on the stored rollout buffer.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            replay_buffer: Placeholder for compatibility (not used).</span>
+<span class="sd">            replay_buffer (object): Placeholder for compatibility (not used).</span>
 <span class="sd">            iterations (int): Number of epochs to optimize the policy per update.</span>
 <span class="sd">            batch_size (int): Batch size (not used; training uses the whole buffer).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3156,7 +3158,7 @@
 <span class="sd">            action (tuple[float, float]): Last action taken (linear and angular velocities).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple[list[float], int]: Processed state vector and terminal flag (1 if terminal, else 0).</span>
+<span class="sd">            (tuple[list[float], int]): Processed state vector and terminal flag (1 if terminal, else 0).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -3424,10 +3426,11 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>np.ndarray: Sampled action.</p>
+                <p>Sampled action.</p>
               </div>
             </td>
           </tr>
@@ -3468,7 +3471,7 @@
 <span class="sd">        add_noise (bool): Whether to sample from the distribution (True) or use the deterministic mean (False).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        np.ndarray: Sampled action.</span>
+<span class="sd">        (np.ndarray): Sampled action.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -3750,10 +3753,11 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="tuple">tuple</span>[<span title="list">list</span>[<span title="float">float</span>], <span title="int">int</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>tuple[list[float], int]: Processed state vector and terminal flag (1 if terminal, else 0).</p>
+                <p>Processed state vector and terminal flag (1 if terminal, else 0).</p>
               </div>
             </td>
           </tr>
@@ -3820,7 +3824,7 @@
 <span class="sd">        action (tuple[float, float]): Last action taken (linear and angular velocities).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple[list[float], int]: Processed state vector and terminal flag (1 if terminal, else 0).</span>
+<span class="sd">        (tuple[list[float], int]): Processed state vector and terminal flag (1 if terminal, else 0).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">latest_scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">latest_scan</span><span class="p">)</span>
 
@@ -4050,6 +4054,7 @@
                 <code>replay_buffer</code>
             </td>
             <td>
+                  <code><span title="object">object</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4200,7 +4205,7 @@
 <span class="sd">    Train the policy and value function using PPO loss based on the stored rollout buffer.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        replay_buffer: Placeholder for compatibility (not used).</span>
+<span class="sd">        replay_buffer (object): Placeholder for compatibility (not used).</span>
 <span class="sd">        iterations (int): Number of epochs to optimize the policy per update.</span>
 <span class="sd">        batch_size (int): Batch size (not used; training uses the whole buffer).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -4499,11 +4504,11 @@
 <span class="sd">        Add a transition to the buffer. (Partial implementation.)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            state: The current observed state.</span>
-<span class="sd">            action: The action taken.</span>
-<span class="sd">            reward: The reward received after taking the action.</span>
+<span class="sd">            state (list or np.array): The current observed state.</span>
+<span class="sd">            action (list or np.array): The action taken.</span>
+<span class="sd">            reward (float): The reward received after taking the action.</span>
 <span class="sd">            terminal (bool): Whether the episode terminated.</span>
-<span class="sd">            next_state: The resulting state after taking the action.</span>
+<span class="sd">            next_state (list or np.array): The resulting state after taking the action.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
@@ -4594,6 +4599,7 @@
                 <code>state</code>
             </td>
             <td>
+                  <code><span title="list">list</span> or <span title="numpy.array">array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4609,6 +4615,7 @@
                 <code>action</code>
             </td>
             <td>
+                  <code><span title="list">list</span> or <span title="numpy.array">array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4624,6 +4631,7 @@
                 <code>reward</code>
             </td>
             <td>
+                  <code><span title="float">float</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4655,6 +4663,7 @@
                 <code>next_state</code>
             </td>
             <td>
+                  <code><span title="list">list</span> or <span title="numpy.array">array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4689,11 +4698,11 @@
 <span class="sd">    Add a transition to the buffer. (Partial implementation.)</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        state: The current observed state.</span>
-<span class="sd">        action: The action taken.</span>
-<span class="sd">        reward: The reward received after taking the action.</span>
+<span class="sd">        state (list or np.array): The current observed state.</span>
+<span class="sd">        action (list or np.array): The action taken.</span>
+<span class="sd">        reward (float): The reward received after taking the action.</span>
 <span class="sd">        terminal (bool): Whether the episode terminated.</span>
-<span class="sd">        next_state: The resulting state after taking the action.</span>
+<span class="sd">        next_state (list or np.array): The resulting state after taking the action.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
