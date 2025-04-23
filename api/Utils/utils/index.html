@@ -1339,7 +1339,7 @@
 <span class="sd">        Load samples from the specified files and populate the replay buffer.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            object: The populated replay buffer.</span>
+<span class="sd">            (object): The populated replay buffer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_names</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading file: &quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
@@ -1445,13 +1445,14 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>object</code></td>            <td>
+            <td>
+                  <code><span title="object">object</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1522,7 +1523,7 @@
 <span class="sd">    Load samples from the specified files and populate the replay buffer.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        object: The populated replay buffer.</span>
+<span class="sd">        (object): The populated replay buffer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_names</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading file: &quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
@@ -1942,13 +1943,14 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>object</code></td>            <td>
+            <td>
+                  <code><span title="object">object</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2057,7 +2059,7 @@
 <span class="sd">        history_len (int, optional): Used for RCPG buffer configuration. Defaults to 10.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        object: The initialized and optionally pre-populated replay buffer.</span>
+<span class="sd">        (object): The initialized and optionally pre-populated replay buffer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">PPO</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">buffer</span>
@@ -2301,10 +2303,11 @@ estimate of return is useful for policy updates.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="torch.Tensor">Tensor</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>torch.Tensor: Maximum return bound for each sample in the batch.</p>
+                <p>Maximum return bound for each sample in the batch.</p>
               </div>
             </td>
           </tr>
@@ -2416,7 +2419,7 @@ estimate of return is useful for policy updates.</p>
 <span class="sd">        device (torch.device): PyTorch device for computation.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: Maximum return bound for each sample in the batch.</span>
+<span class="sd">        (torch.Tensor): Maximum return bound for each sample in the batch.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">next_state</span> <span class="o">=</span> <span class="n">next_state</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>  <span class="c1"># Prevents in-place modifications</span>
     <span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>  <span class="c1"># Ensures original reward is unchanged</span>

@@ -1446,7 +1446,7 @@ action vector.</p>
 <span class="sd">                              The last 5 elements are [distance, cos, sin, lin_vel, ang_vel].</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            torch.Tensor: Action tensor of shape (batch_size, action_dim),</span>
+<span class="sd">            (torch.Tensor): Action tensor of shape (batch_size, action_dim),</span>
 <span class="sd">                          with values in range [-1, 1] due to tanh activation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -1543,10 +1543,11 @@ action vector.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="torch.Tensor">Tensor</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>torch.Tensor: Action tensor of shape (batch_size, action_dim),
+                <p>Action tensor of shape (batch_size, action_dim),
           with values in range [-1, 1] due to tanh activation.</p>
               </div>
             </td>
@@ -1599,7 +1600,7 @@ action vector.</p>
 <span class="sd">                          The last 5 elements are [distance, cos, sin, lin_vel, ang_vel].</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: Action tensor of shape (batch_size, action_dim),</span>
+<span class="sd">        (torch.Tensor): Action tensor of shape (batch_size, action_dim),</span>
 <span class="sd">                      with values in range [-1, 1] due to tanh activation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -3953,7 +3954,7 @@ CNN-extracted features, embedded goal and previous action features, and the curr
 <span class="sd">            action (torch.Tensor): Current action tensor of shape (batch_size, action_dim).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple:</span>
+<span class="sd">            (tuple):</span>
 <span class="sd">                - q1 (torch.Tensor): First Q-value estimate (batch_size, 1).</span>
 <span class="sd">                - q2 (torch.Tensor): Second Q-value estimate (batch_size, 1).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4070,13 +4071,14 @@ CNN-extracted features, embedded goal and previous action features, and the curr
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4148,7 +4150,7 @@ CNN-extracted features, embedded goal and previous action features, and the curr
 <span class="sd">        action (torch.Tensor): Current action tensor of shape (batch_size, action_dim).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple:</span>
+<span class="sd">        (tuple):</span>
 <span class="sd">            - q1 (torch.Tensor): First Q-value estimate (batch_size, 1).</span>
 <span class="sd">            - q2 (torch.Tensor): Second Q-value estimate (batch_size, 1).</span>
 <span class="sd">    &quot;&quot;&quot;</span>

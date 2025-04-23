@@ -1450,7 +1450,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">        Get the number of elements currently in the buffer.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            int: Current buffer size.</span>
+<span class="sd">            (int): Current buffer size.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
 
@@ -1462,7 +1462,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">            batch_size (int): Number of experiences to sample.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple of np.ndarrays: Batches of states, actions, rewards, done flags, and next states.</span>
+<span class="sd">            (Tuple of np.ndarrays): Batches of states, actions, rewards, done flags, and next states.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
             <span class="n">batch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
@@ -1482,7 +1482,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">        Return the entire buffer contents as separate arrays.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple of np.ndarrays: Full arrays of states, actions, rewards, done flags, and next states.</span>
+<span class="sd">            (Tuple of np.ndarrays): Full arrays of states, actions, rewards, done flags, and next states.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">])</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">])</span>
@@ -1815,10 +1815,11 @@ enabling sampling of uncorrelated mini-batches for training.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code>Tuple of np.ndarrays</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Tuple of np.ndarrays: Full arrays of states, actions, rewards, done flags, and next states.</p>
+                <p>Full arrays of states, actions, rewards, done flags, and next states.</p>
               </div>
             </td>
           </tr>
@@ -1846,7 +1847,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">    Return the entire buffer contents as separate arrays.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple of np.ndarrays: Full arrays of states, actions, rewards, done flags, and next states.</span>
+<span class="sd">        (Tuple of np.ndarrays): Full arrays of states, actions, rewards, done flags, and next states.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">])</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">])</span>
@@ -1917,10 +1918,11 @@ enabling sampling of uncorrelated mini-batches for training.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code>Tuple of np.ndarrays</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Tuple of np.ndarrays: Batches of states, actions, rewards, done flags, and next states.</p>
+                <p>Batches of states, actions, rewards, done flags, and next states.</p>
               </div>
             </td>
           </tr>
@@ -1959,7 +1961,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">        batch_size (int): Number of experiences to sample.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple of np.ndarrays: Batches of states, actions, rewards, done flags, and next states.</span>
+<span class="sd">        (Tuple of np.ndarrays): Batches of states, actions, rewards, done flags, and next states.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
         <span class="n">batch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
@@ -1997,13 +1999,14 @@ enabling sampling of uncorrelated mini-batches for training.</p>
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>int</code></td>            <td>
+            <td>
+                  <code><span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2029,7 +2032,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">    Get the number of elements currently in the buffer.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        int: Current buffer size.</span>
+<span class="sd">        (int): Current buffer size.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
 </code></pre></div></td></tr></table></div>
@@ -2240,7 +2243,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">        Get the number of complete episodes in the buffer.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            int: Number of episodes.</span>
+<span class="sd">            (int): Number of episodes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
 
@@ -2254,7 +2257,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">            batch_size (int): Number of sequences to sample.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple of np.ndarrays: Sequences of past states, actions, rewards, done flags, and next states.</span>
+<span class="sd">            (Tuple of np.ndarrays): Sequences of past states, actions, rewards, done flags, and next states.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
             <span class="n">batch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
@@ -2686,10 +2689,11 @@ enabling sampling of uncorrelated mini-batches for training.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code>Tuple of np.ndarrays</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Tuple of np.ndarrays: Sequences of past states, actions, rewards, done flags, and next states.</p>
+                <p>Sequences of past states, actions, rewards, done flags, and next states.</p>
               </div>
             </td>
           </tr>
@@ -2767,7 +2771,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">        batch_size (int): Number of sequences to sample.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple of np.ndarrays: Sequences of past states, actions, rewards, done flags, and next states.</span>
+<span class="sd">        (Tuple of np.ndarrays): Sequences of past states, actions, rewards, done flags, and next states.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
         <span class="n">batch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
@@ -2840,13 +2844,14 @@ enabling sampling of uncorrelated mini-batches for training.</p>
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>int</code></td>            <td>
+            <td>
+                  <code><span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2872,7 +2877,7 @@ enabling sampling of uncorrelated mini-batches for training.</p>
 <span class="sd">    Get the number of complete episodes in the buffer.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        int: Number of episodes.</span>
+<span class="sd">        (int): Number of episodes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
 </code></pre></div></td></tr></table></div>

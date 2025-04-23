@@ -1267,7 +1267,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">            ang_velocity (float): Angular velocity to apply to the robot.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: Contains the latest LIDAR scan, distance to goal, cosine and sine of angle to goal,</span>
+<span class="sd">            (tuple): Contains the latest LIDAR scan, distance to goal, cosine and sine of angle to goal,</span>
 <span class="sd">                   collision flag, goal reached flag, applied action, and computed reward.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">lin_velocity</span><span class="p">],</span> <span class="p">[</span><span class="n">ang_velocity</span><span class="p">]]))</span>
@@ -1308,7 +1308,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">            random_obstacle_ids (list or None): Specific obstacle IDs to randomize.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: Initial observation after reset, including LIDAR scan, distance, cos/sin,</span>
+<span class="sd">            (tuple): Initial observation after reset, including LIDAR scan, distance, cos/sin,</span>
 <span class="sd">                   and reward-related flags and values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">robot_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1356,7 +1356,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">            vec2 (list): Second 2D vector.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: (cosine, sine) of the angle between the vectors.</span>
+<span class="sd">            (tuple): (cosine, sine) of the angle between the vectors.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vec1</span> <span class="o">=</span> <span class="n">vec1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">)</span>
         <span class="n">vec2</span> <span class="o">=</span> <span class="n">vec2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">)</span>
@@ -1376,7 +1376,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">            laser_scan (list): The LIDAR scan readings.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: Computed reward for the current state.</span>
+<span class="sd">            (float): Computed reward for the current state.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">goal</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">100.0</span>
@@ -1559,13 +1559,14 @@ resetting, and interacting with a mobile robot, including reward computation.</p
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1605,7 +1606,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">        vec2 (list): Second 2D vector.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: (cosine, sine) of the angle between the vectors.</span>
+<span class="sd">        (tuple): (cosine, sine) of the angle between the vectors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">vec1</span> <span class="o">=</span> <span class="n">vec1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">)</span>
     <span class="n">vec2</span> <span class="o">=</span> <span class="n">vec2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">)</span>
@@ -1719,13 +1720,14 @@ resetting, and interacting with a mobile robot, including reward computation.</p
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>float</code></td>            <td>
+            <td>
+                  <code><span title="float">float</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1771,7 +1773,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">        laser_scan (list): The LIDAR scan readings.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        float: Computed reward for the current state.</span>
+<span class="sd">        (float): Computed reward for the current state.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">goal</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">100.0</span>
@@ -1883,13 +1885,14 @@ resetting, and interacting with a mobile robot, including reward computation.</p
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1974,7 +1977,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">        random_obstacle_ids (list or None): Specific obstacle IDs to randomize.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: Initial observation after reset, including LIDAR scan, distance, cos/sin,</span>
+<span class="sd">        (tuple): Initial observation after reset, including LIDAR scan, distance, cos/sin,</span>
 <span class="sd">               and reward-related flags and values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">robot_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2082,13 +2085,14 @@ resetting, and interacting with a mobile robot, including reward computation.</p
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2143,7 +2147,7 @@ resetting, and interacting with a mobile robot, including reward computation.</p
 <span class="sd">        ang_velocity (float): Angular velocity to apply to the robot.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: Contains the latest LIDAR scan, distance to goal, cosine and sine of angle to goal,</span>
+<span class="sd">        (tuple): Contains the latest LIDAR scan, distance to goal, cosine and sine of angle to goal,</span>
 <span class="sd">               collision flag, goal reached flag, applied action, and computed reward.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">lin_velocity</span><span class="p">],</span> <span class="p">[</span><span class="n">ang_velocity</span><span class="p">]]))</span>
