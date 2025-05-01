@@ -78,10 +78,6 @@ class SIM_ENV:
             if close_indices.size > 0:
                 reward += 1
                 self.path = self.path[:, :close_indices[0]]
-                print(len(self.path[0]), reward)
-
-
-
 
 
         return latest_scan, distance, cos, sin, collision, goal, action, reward

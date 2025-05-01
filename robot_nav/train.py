@@ -46,7 +46,7 @@ def main(args=None):
         model_name="TD3",
     )  # instantiate a model
 
-    sim = SIM_ENV(disable_plotting=False)  # instantiate environment
+    sim = SIM_ENV(disable_plotting=True)  # instantiate environment
     replay_buffer = get_buffer(
         model,
         sim,
@@ -85,7 +85,7 @@ def main(args=None):
         if (
             terminal or steps == max_steps
         ):  # reset environment of terminal stat ereached, or max_steps were taken
-            latest_scan, distance, cos, sin, collision, goal, a, reward = sim.reset()
+            latest_scan, distance, cos, sin, collision, goal, a, reward = sim.reset(random_obstacles=True)
             episode += 1
             if episode % train_every_n == 0:
                 model.train(
