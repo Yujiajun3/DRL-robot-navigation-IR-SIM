@@ -15,7 +15,7 @@ def main(args=None):
     """Main training function"""
     action_dim = 2  # number of actions produced by the model
     max_action = 1  # maximum absolute value of output actions
-    state_dim = 25  # number of input values in the neural network (vector length of state input)
+    state_dim = 185  # number of input values in the neural network (vector length of state input)
     device = torch.device(
         "cuda" if torch.cuda.is_available() else "cpu"
     )  # using cuda if it is available, cpu otherwise
@@ -36,7 +36,7 @@ def main(args=None):
     )
     save_every = 5  # save the model every n training cycles
 
-    model = TD3(
+    model = CNNTD3(
         state_dim=state_dim,
         action_dim=action_dim,
         max_action=max_action,

@@ -1,6 +1,7 @@
 import irsim
 import numpy as np
 import random
+from irsim.lib.path_planners.a_star import AStarPlanner
 
 import shapely
 from irsim.lib.handler.geometry_handler import GeometryFactory
@@ -32,6 +33,8 @@ class SIM_ENV:
         )
         robot_info = self.env.get_robot_info(0)
         self.robot_goal = robot_info.goal
+        self.path = None
+        self.planner = AStarPlanner(self.env.get_map(), resolution=0.3)
 
     def step(self, lin_velocity=0.0, ang_velocity=0.1):
         """
@@ -63,6 +66,23 @@ class SIM_ENV:
         collision = self.env.robot.collision
         action = [lin_velocity, ang_velocity]
         reward = self.get_reward(goal, collision, action, latest_scan)
+        if self.path is not None:
+            # Ensure robot_state is a 1D array of shape (2,)
+            robot_pos = np.array(robot_state[:2]).reshape(-1)  # shape (2,)
+
+            # Transpose path to shape (N, 2) and subtract robot position
+            path_vectors = self.path.T - robot_pos  # shape (N, 2)
+            path_distances = np.linalg.norm(path_vectors, axis=1)
+
+            close_indices = np.where(path_distances <= 0.3)[0]
+            if close_indices.size > 0:
+                reward += 1
+                self.path = self.path[:, :close_indices[0]]
+                print(len(self.path[0]), reward)
+
+
+
+
 
         return latest_scan, distance, cos, sin, collision, goal, action, reward
 
@@ -116,9 +136,13 @@ class SIM_ENV:
         self.robot_goal = self.env.robot.goal
 
         action = [0.0, 0.0]
+        robot_state = self.env.get_robot_state()
+        self.path = self.planner.planning(robot_state, self.robot_goal, show_animation=False)
+        self.env.draw_trajectory(self.path, traj_type="r-")
         latest_scan, distance, cos, sin, _, _, action, reward = self.step(
             lin_velocity=action[0], ang_velocity=action[1]
         )
+
         return latest_scan, distance, cos, sin, False, False, action, reward
 
     @staticmethod
