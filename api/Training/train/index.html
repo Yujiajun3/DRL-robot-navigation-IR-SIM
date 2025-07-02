@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -257,9 +257,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../IR-SIM/ir-sim" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -268,7 +279,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            IR-SIM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IR-SIM/ir-sim" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIM
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IR-SIM/ir-marl-sim" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MARL SIM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -468,6 +537,98 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_8" id="__nav_2_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MARL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            MARL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/MARL/Attention" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HardSoft Attention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/MARL/TD3" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TD3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -947,7 +1108,12 @@
 
             <details class="quote">
               <summary>Source code in <code>robot_nav/train.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 14</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
 <span class="normal"> 15</span>
 <span class="normal"> 16</span>
 <span class="normal"> 17</span>
@@ -1036,14 +1202,11 @@
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Main training function&quot;&quot;&quot;</span>
     <span class="n">action_dim</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># number of actions produced by the model</span>
     <span class="n">max_action</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># maximum absolute value of output actions</span>
-    <span class="n">state_dim</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1"># number of input values in the neural network (vector length of state input)</span>
+    <span class="n">state_dim</span> <span class="o">=</span> <span class="mi">95</span>  <span class="c1"># number of input values in the neural network (vector length of state input)</span>
     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span>
         <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
     <span class="p">)</span>  <span class="c1"># using cuda if it is available, cpu otherwise</span>
@@ -1064,17 +1227,19 @@
     <span class="p">)</span>
     <span class="n">save_every</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># save the model every n training cycles</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">TD3</span><span class="p">(</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">CNNTD3</span><span class="p">(</span>
         <span class="n">state_dim</span><span class="o">=</span><span class="n">state_dim</span><span class="p">,</span>
         <span class="n">action_dim</span><span class="o">=</span><span class="n">action_dim</span><span class="p">,</span>
         <span class="n">max_action</span><span class="o">=</span><span class="n">max_action</span><span class="p">,</span>
         <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
         <span class="n">save_every</span><span class="o">=</span><span class="n">save_every</span><span class="p">,</span>
         <span class="n">load_model</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;TD3&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;CNNTD3&quot;</span><span class="p">,</span>
     <span class="p">)</span>  <span class="c1"># instantiate a model</span>
 
-    <span class="n">sim</span> <span class="o">=</span> <span class="n">SIM_ENV</span><span class="p">(</span><span class="n">disable_plotting</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># instantiate environment</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">SIM</span><span class="p">(</span>
+        <span class="n">world_file</span><span class="o">=</span><span class="s2">&quot;robot_world.yaml&quot;</span><span class="p">,</span> <span class="n">disable_plotting</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>  <span class="c1"># instantiate environment</span>
     <span class="n">replay_buffer</span> <span class="o">=</span> <span class="n">get_buffer</span><span class="p">(</span>
         <span class="n">model</span><span class="p">,</span>
         <span class="n">sim</span><span class="p">,</span>
@@ -1193,10 +1358,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
     
   </body>
