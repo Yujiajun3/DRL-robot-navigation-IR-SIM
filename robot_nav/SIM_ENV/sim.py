@@ -32,6 +32,9 @@ class SIM(SIM_ENV):
         robot_info = self.env.get_robot_info(0)
         self.robot_goal = robot_info.goal
 
+        self.prev_action = [0.0, 0.0]
+        self.prev_state = np.array([[0.0], [0.0], [0.0]])
+
     def step(self, lin_velocity=0.0, ang_velocity=0.1):
         """
         Perform one step in the simulation using the given control commands.
@@ -61,7 +64,9 @@ class SIM(SIM_ENV):
         cos, sin = self.cossin(pose_vector, goal_vector)
         collision = self.env.robot.collision
         action = [lin_velocity, ang_velocity]
-        reward = self.get_reward(goal, collision, action, latest_scan)
+        reward = self.get_reward(goal, collision, action, latest_scan, lin_velocity, pose_vector, goal_vector, distance, self.prev_action, robot_state, self.prev_state)
+        self.prev_action = action
+        self.prev_state = robot_state
 
         return latest_scan, distance, cos, sin, collision, goal, action, reward
 
@@ -86,7 +91,7 @@ class SIM(SIM_ENV):
                    and reward-related flags and values.
         """
         if robot_state is None:
-            robot_state = [[random.uniform(1, 9)], [random.uniform(1, 9)], [0]]
+            robot_state = [[random.uniform(1, 59)], [random.uniform(1, 59)], [0]]
 
         self.env.robot.set_state(
             state=np.array(robot_state),
@@ -98,7 +103,7 @@ class SIM(SIM_ENV):
                 random_obstacle_ids = [i + 1 for i in range(7)]
             self.env.random_obstacle_position(
                 range_low=[0, 0, -3.14],
-                range_high=[10, 10, 3.14],
+                range_high=[60, 60, 3.14],
                 ids=random_obstacle_ids,
                 non_overlapping=True,
             )
@@ -107,7 +112,7 @@ class SIM(SIM_ENV):
             self.env.robot.set_random_goal(
                 obstacle_list=self.env.obstacle_list,
                 init=True,
-                range_limits=[[1, 1, -3.141592653589793], [9, 9, 3.141592653589793]],
+                range_limits=[[1, 1, -3.141592653589793], [59, 59, 3.141592653589793]],
             )
         else:
             self.env.robot.set_goal(np.array(robot_goal), init=True)
@@ -121,7 +126,7 @@ class SIM(SIM_ENV):
         return latest_scan, distance, cos, sin, False, False, action, reward
 
     @staticmethod
-    def get_reward(goal, collision, action, laser_scan):
+    def get_reward(goal, collision, action, laser_scan, lin_velocity, pose_vector, goal_vector, distance, prev_action, robot_state, prev_state):
         """
         Calculate the reward for the current step.
 
@@ -135,9 +140,25 @@ class SIM(SIM_ENV):
             (float): Computed reward for the current state.
         """
         if goal:
-            return 100.0
+            return 10.0
         elif collision:
-            return -100.0
+            return -2.0
         else:
-            r3 = lambda x: 1.35 - x if x < 1.35 else 0.0
-            return action[0] - abs(action[1]) / 2 - r3(min(laser_scan)) / 2
+            radius = 0.5
+            r3 = lambda x: radius - x if x < radius else 0.0
+            # return action[0] - abs(action[1]) / 2 - r3(min(laser_scan)) / 2 + 0.2 / (0.1+distance) +\
+            #         0.2 * lin_velocity * (pose_vector[0] * goal_vector[0] + pose_vector[1] * goal_vector[1]) / distance
+
+            pi=3.1415926
+            smoothness = -((action[0]*pose_vector[0]-prev_action[0]*np.cos(prev_state[2]).item())**2 + \
+                           (action[0]*pose_vector[1]-prev_action[0]*np.sin(prev_state[2]).item())**2)
+
+            velocity_proximity = 0.0
+            if distance > 0.3:
+                velocity_proximity = 1.0 * lin_velocity * (pose_vector[0] * goal_vector[0] + pose_vector[1] * goal_vector[1]) / distance
+            else:
+                velocity_proximity = 0.6
+            return  - abs(action[1])**3*0.1 - r3(min(laser_scan)) / 400 +  0.1 * smoothness + 0.1 *  velocity_proximity
+
+
+

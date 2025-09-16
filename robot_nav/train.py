@@ -1,4 +1,5 @@
 from robot_nav.models.CNNTD3.CNNTD3 import CNNTD3
+from robot_nav.models.PPO.PPO import PPO
 
 import torch
 import numpy as np
@@ -10,9 +11,10 @@ def main(args=None):
     """Main training function"""
     action_dim = 2  # number of actions produced by the model
     max_action = 1  # maximum absolute value of output actions
-    state_dim = 95  # number of input values in the neural network (vector length of state input)
+    state_dim = 185  # number of input values in the neural network (vector length of state input)
     device = torch.device(
-        "cuda" if torch.cuda.is_available() else "cpu"
+        "cpu"
+        # "cuda"
     )  # using cuda if it is available, cpu otherwise
     nr_eval_episodes = 10  # how many episodes to use to run evaluation
     max_epochs = 60  # max number of epochs
@@ -20,8 +22,8 @@ def main(args=None):
     episodes_per_epoch = 70  # how many episodes to run in single epoch
     episode = 0  # starting episode number
     train_every_n = 2  # train and update network parameters every n episodes
-    training_iterations = 80  # how many batches to use for single training cycle
-    batch_size = 64  # batch size for each training iteration
+    training_iterations = 300  # how many batches to use for single training cycle
+    batch_size = 1024  # batch size for each training iteration
     max_steps = 300  # maximum number of steps in single episode
     steps = 0  # starting step number
     load_saved_buffer = False  # whether to load experiences from assets/data.yml
@@ -40,6 +42,15 @@ def main(args=None):
         load_model=False,
         model_name="CNNTD3",
     )  # instantiate a model
+    # model = PPO(
+    #     state_dim=state_dim,
+    #     action_dim=action_dim,
+    #     max_action=max_action,
+    #     device=device,
+    #     save_every=save_every,
+    #     load_model=False,
+    #     model_name="PPO",
+    # )
 
     sim = SIM(
         world_file="robot_world.yaml", disable_plotting=False
@@ -57,12 +68,14 @@ def main(args=None):
     latest_scan, distance, cos, sin, collision, goal, a, reward = sim.step(
         lin_velocity=0.0, ang_velocity=0.0
     )  # get the initial step state
-
+    print("Starting training")
+    print("device:", device)
     while epoch < max_epochs:  # train until max_epochs is reached
+        # print("Hello")
         state, terminal = model.prepare_state(
             latest_scan, distance, cos, sin, collision, goal, a
         )  # get state a state representation from returned data from the environment
-
+        # print(f"state_dim: {state_dim}, len(state): {len(state)}")
         action = model.get_action(np.array(state), True)  # get an action from the model
         a_in = [
             (action[0] + 1) / 4,

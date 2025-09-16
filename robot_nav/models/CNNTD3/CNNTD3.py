@@ -483,11 +483,10 @@ class CNNTD3(object):
         latest_scan /= 7
 
         # Normalize to [0, 1] range
-        distance /= 10
+        distance /= 60
         lin_vel = action[0] * 2
         ang_vel = (action[1] + 1) / 2
         state = latest_scan.tolist() + [distance, cos, sin] + [lin_vel, ang_vel]
-
         assert len(state) == self.state_dim
         terminal = 1 if collision or goal else 0
 

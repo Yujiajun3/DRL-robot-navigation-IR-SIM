@@ -1,17 +1,17 @@
 world:
-  height: 10  # the height of the world
-  width: 10   # the height of the world
-  step_time: 0.3  # 10Hz calculate each step
-  sample_time: 0.3  # 10 Hz for render and data extraction
+  height: 60  # the height of the world
+  width: 60   # the height of the world
+  step_time: 0.2  # 10Hz calculate each step
+  sample_time: 0.2  # 10 Hz for render and data extraction ->15Hz
   collision_mode: 'reactive'
 
 robot:
   - kinematics: {name: 'diff'}
-    shape: {name: 'circle', radius: 0.2}
-    vel_min: [ 0, -1.0 ]
-    vel_max: [ 1.0, 1.0 ]
+    shape: {name: 'circle', radius: 0.4}
+    vel_min: [ 1.0, -1.0 ]
+    vel_max: [ 3.0, 1.0 ]
     state: [2, 2, 0, 0]
-    goal: [9, 9, 0]
+    goal: [50, 50, 0]
     arrive_mode: position
     goal_threshold: 0.3
 
@@ -31,24 +31,598 @@ robot:
       show_trajectory: True
 
 obstacle:
-  - number: 4
-    kinematics: {name: 'omni'}
-    distribution: {name: 'random', range_low: [0, 0, -3.14], range_high: [10, 10, 3.14]}
-    behavior: {name: 'rvo', wander: True, range_low: [0, 0, -3.14], range_high: [10, 10, 3.14], vxmax: 0.2, vymax: 0.2, factor: 1.0}
-    vel_max: [0.2, 0.2]
-    vel_min: [-0.2, -0.2]
-    shape:
-      - {name: 'circle', radius: 1.0, random_shape: True}
-      - {name: 'polygon', random_shape: true, avg_radius_range: [0.5, 1.0], irregularity_range: [0, 0.4], spikeyness_range: [0, 0.4], num_vertices_range: [4, 6]}
-  - shape: {name: 'circle', radius: 0.8}  # length, width
-    state: [ 5, 2, 1 ]
-    kinematics: { name: 'static' }
-  - shape: { name: 'rectangle', length: 1.0, width: 1.2 }  # length, width
-    state: [ 8, 5, 1 ]
-    kinematics: {name: 'static'}
-  - shape: { name: 'rectangle', length: 0.5, width: 2.1 }  # length, width
-    state: [ 1, 8, 1.3 ]
-    kinematics: {name: 'static'}
-  - shape: { name: 'linestring', vertices: [ [ 0, 0 ], [ 10, 0 ], [ 10, 10 ], [ 0, 10 ],[ 0, 0 ]  ] }  # vertices
-    kinematics: {name: 'static'}
-    state: [ 0, 0, 0 ]
+  # - number: 4
+  #   kinematics: {name: 'omni'}
+  #   distribution: {name: 'random', range_low: [0, 0, -3.14], range_high: [10, 10, 3.14]}
+  #   behavior: {name: 'rvo', wander: True, range_low: [0, 0, -3.14], range_high: [10, 10, 3.14], vxmax: 0.2, vymax: 0.2, factor: 1.0}
+  #   vel_max: [0.2, 0.2]
+  #   vel_min: [-0.2, -0.2]
+  #   shape:
+  #     - {name: 'circle', radius: 1.0, random_shape: True}
+  #     - {name: 'polygon', random_shape: true, avg_radius_range: [0.5, 1.0], irregularity_range: [0, 0.4], spikeyness_range: [0, 0.4], num_vertices_range: [4, 6]}
+#  - shape: {name: 'circle', radius: 0.4}  # length, width
+#    state: [ 5, 2, 1 ]
+#  - shape: { name: 'circle', radius: 0.3 }  # length, width
+#    state: [ 36, 2, 1 ]
+#    kinematics: { name: 'static' }
+#  - shape: { name: 'rectangle', length: 0.3, width: 0.2 }  # length, width
+#    state: [ 8, 5, 1 ]
+#    kinematics: {name: 'static'}
+#  - shape: { name: 'rectangle', length: 0.5, width: 0.3 }  # length, width
+#    state: [ 1, 8, 1.3 ]
+#    kinematics: {name: 'static'}
+#  - shape: { name: 'rectangle', length: 0.5, width: 0.3 }  # length, width
+#    state: [ 1, 8, 1.3 ]
+#    kinematics: {name: 'static'}
+#
+#
+# - shape: { name: 'circle', radius: 0.4 }  # length, width
+#   state: [ 5, 2, 1 ]
+# - shape: { name: 'circle', radius: 0.3 }  # length, width
+#   state: [ 5, 2, 1 ]
+#   kinematics: { name: 'static' }
+# - shape: { name: 'rectangle', length: 0.3, width: 0.2 }  # length, width
+#   state: [ 8, 5, 1 ]
+#   kinematics: { name: 'static' }
+# - shape: { name: 'rectangle', length: 0.5, width: 0.3 }  # length, width
+#   state: [ 1, 8, 1.3 ]
+#   kinematics: { name: 'static' }
+# - shape: { name: 'rectangle', length: 0.5, width: 0.3 }  # length, width
+#   state: [ 1, 8, 1.3 ]
+#   kinematics: { name: 'static' }
+
+
+# 方块与矩形
+#- shape: { name: 'circle', radius: 0.45 }
+#  state: [ 12, 18, 0.8 ]
+#- shape: { name: 'rectangle', length: 0.7, width: 0.4 }
+#  state: [ 25, 32, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.85 }
+#  state: [ 38, 15, 1.5 ]
+#- shape: { name: 'rectangle', length: 0.5, width: 0.8 }
+#  state: [ 42, 28, 0.9 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.65 }
+#  state: [ 18, 45, 1.1 ]
+#
+#- shape: { name: 'rectangle', length: 0.9, width: 0.6 }
+#  state: [ 55, 12, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.75 }
+#  state: [ 8, 32, 0.7 ]
+#- shape: { name: 'rectangle', length: 0.4, width: 0.7 }
+#  state: [ 32, 58, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.55 }
+#  state: [ 47, 42, 1.0 ]
+#- shape: { name: 'rectangle', length: 0.8, width: 0.5 }
+#  state: [ 22, 8, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.95 }
+#  state: [ 58, 35, 1.2 ]
+#- shape: { name: 'rectangle', length: 0.6, width: 0.9 }
+#  state: [ 15, 52, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.35 }
+#  state: [ 28, 22, 1.5 ]
+#- shape: { name: 'rectangle', length: 0.7, width: 0.3 }
+#  state: [ 45, 15, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.65 }
+#  state: [ 12, 38, 0.9 ]
+#
+#- shape: { name: 'rectangle', length: 0.5, width: 0.6 }
+#  state: [ 35, 48, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.85 }
+#  state: [ 52, 25, 1.3 ]
+#- shape: { name: 'rectangle', length: 0.8, width: 0.4 }
+#  state: [ 18, 12, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.45 }
+#  state: [ 38, 55, 1.0 ]
+#- shape: { name: 'rectangle', length: 0.9, width: 0.7 }
+#  state: [ 25, 32, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.75 }
+#  state: [ 48, 18, 1.2 ]
+#- shape: { name: 'rectangle', length: 0.4, width: 0.8 }
+#  state: [ 12, 42, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.55 }
+#  state: [ 32, 28, 1.5 ]
+#- shape: { name: 'rectangle', length: 0.6, width: 0.5 }
+#  state: [ 55, 38, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.95 }
+#  state: [ 22, 52, 0.9 ]
+#
+#- shape: { name: 'rectangle', length: 0.7, width: 0.9 }
+#  state: [ 42, 22, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.35 }
+#  state: [ 15, 35, 1.3 ]
+#- shape: { name: 'rectangle', length: 0.8, width: 0.6 }
+#  state: [ 28, 45, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.65 }
+#  state: [ 52, 8, 1.0 ]
+#- shape: { name: 'rectangle', length: 0.5, width: 0.7 }
+#  state: [ 38, 32, 1.6 ]
+#  kinematics: { name: 'static' }
+
+
+# 全部圆形
+#- shape: { name: 'circle', radius: 0.87 }
+#  state: [ 12, 18, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.45 }
+#  state: [ 25, 32, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.05 }
+#  state: [ 38, 15, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.62 }
+#  state: [ 42, 28, 0.9 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.93 }
+#  state: [ 18, 45, 1.1 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.78 }
+#  state: [ 55, 12, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.35 }
+#  state: [ 8, 32, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.12 }
+#  state: [ 32, 58, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.54 }
+#  state: [ 47, 42, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.81 }
+#  state: [ 22, 8, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.96 }
+#  state: [ 58, 35, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.43 }
+#  state: [ 15, 52, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.18 }
+#  state: [ 28, 22, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.67 }
+#  state: [ 45, 15, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.89 }
+#  state: [ 12, 38, 0.9 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.52 }
+#  state: [ 35, 48, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.07 }
+#  state: [ 52, 25, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.74 }
+#  state: [ 18, 12, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.39 }
+#  state: [ 38, 55, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.98 }
+#  state: [ 25, 32, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.63 }
+#  state: [ 48, 18, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.41 }
+#  state: [ 12, 42, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.15 }
+#  state: [ 32, 28, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.57 }
+#  state: [ 55, 38, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.84 }
+#  state: [ 22, 52, 0.9 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.71 }
+#  state: [ 42, 22, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.36 }
+#  state: [ 15, 35, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.02 }
+#  state: [ 28, 45, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.49 }
+#  state: [ 52, 8, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.91 }
+#  state: [ 38, 32, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.76 }
+#  state: [ 27, 19, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.44 }
+#  state: [ 43, 54, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.09 }
+#  state: [ 16, 27, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.58 }
+#  state: [ 51, 13, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.82 }
+#  state: [ 34, 46, 0.9 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.53 }
+#  state: [ 23, 37, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.14 }
+#  state: [ 46, 29, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.68 }
+#  state: [ 14, 21, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.37 }
+#  state: [ 57, 44, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.95 }
+#  state: [ 31, 16, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.64 }
+#  state: [ 44, 33, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.42 }
+#  state: [ 19, 49, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.17 }
+#  state: [ 36, 24, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.59 }
+#  state: [ 53, 41, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.86 }
+#  state: [ 26, 11, 0.9 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.72 }
+#  state: [ 41, 26, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.38 }
+#  state: [ 17, 43, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.03 }
+#  state: [ 54, 36, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.47 }
+#  state: [ 29, 14, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.92 }
+#  state: [ 37, 51, 1.6 ]
+#  kinematics: { name: 'static' }
+#
+#- shape: { name: 'circle', radius: 0.72 }
+#  state: [ 41, 26, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.38 }
+#  state: [ 17, 43, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 1.03 }
+#  state: [ 54, 36, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.47 }
+#  state: [ 29, 14, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.92 }
+#  state: [ 37, 51, 1.6 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.65 }
+#  state: [ 22, 31, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.81 }
+#  state: [ 48, 19, 0.9 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.53 }
+#  state: [ 13, 28, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.76 }
+#  state: [ 35, 42, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.44 }
+#  state: [ 26, 37, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.89 }
+#  state: [ 43, 24, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.59 }
+#  state: [ 19, 45, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.71 }
+#  state: [ 32, 16, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.96 }
+#  state: [ 51, 29, 1.6 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.42 }
+#  state: [ 24, 33, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.68 }
+#  state: [ 38, 47, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.85 }
+#  state: [ 45, 22, 0.9 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.55 }
+#  state: [ 16, 39, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.78 }
+#  state: [ 29, 41, 1.1 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.49 }
+#  state: [ 21, 35, 0.8 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.91 }
+#  state: [ 47, 27, 1.3 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.62 }
+#  state: [ 14, 44, 1.4 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.74 }
+#  state: [ 33, 18, 0.7 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.99 }
+#  state: [ 52, 31, 1.6 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.46 }
+#  state: [ 27, 36, 1.0 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.83 }
+#  state: [ 39, 49, 1.2 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.57 }
+#  state: [ 18, 32, 0.9 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.79 }
+#  state: [ 44, 23, 1.5 ]
+#  kinematics: { name: 'static' }
+#- shape: { name: 'circle', radius: 0.51 }
+#  state: [ 31, 38, 1.1 ]
+#  kinematics: { name: 'static' }
+
+- shape: { name: 'circle', radius: 0.87 }
+  state: [ 8, 52, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.45 }
+  state: [ 25, 18, 0.8 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.05 }
+  state: [ 42, 45, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.62 }
+  state: [ 15, 32, 0.9 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.93 }
+  state: [ 55, 28, 1.1 ]
+
+- shape: { name: 'circle', radius: 0.78 }
+  state: [ 32, 8, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.35 }
+  state: [ 48, 55, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.12 }
+  state: [ 18, 42, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.54 }
+  state: [ 52, 15, 1.0 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.81 }
+  state: [ 28, 58, 1.6 ]
+
+- shape: { name: 'circle', radius: 0.96 }
+  state: [ 12, 25, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.43 }
+  state: [ 38, 12, 0.8 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.18 }
+  state: [ 58, 48, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.67 }
+  state: [ 22, 35, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.89 }
+  state: [ 45, 22, 0.9 ]
+
+- shape: { name: 'circle', radius: 0.52 }
+  state: [ 8, 45, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.07 }
+  state: [ 35, 8, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.74 }
+  state: [ 52, 52, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.39 }
+  state: [ 18, 18, 1.0 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.98 }
+  state: [ 42, 38, 1.6 ]
+
+- shape: { name: 'circle', radius: 0.63 }
+  state: [ 28, 28, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.41 }
+  state: [ 55, 42, 0.8 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.15 }
+  state: [ 12, 12, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.57 }
+  state: [ 38, 55, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.84 }
+  state: [ 48, 8, 0.9 ]
+
+- shape: { name: 'circle', radius: 0.71 }
+  state: [ 22, 48, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.36 }
+  state: [ 58, 22, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.02 }
+  state: [ 15, 35, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.49 }
+  state: [ 32, 58, 1.0 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.91 }
+  state: [ 45, 15, 1.6 ]
+
+- shape: { name: 'circle', radius: 0.76 }
+  state: [ 8, 28, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.44 }
+  state: [ 35, 45, 0.8 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.09 }
+  state: [ 52, 18, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.58 }
+  state: [ 18, 52, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.82 }
+  state: [ 42, 32, 0.9 ]
+
+- shape: { name: 'circle', radius: 0.53 }
+  state: [ 28, 8, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.14 }
+  state: [ 55, 35, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.68 }
+  state: [ 12, 42, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.37 }
+  state: [ 38, 25, 1.0 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.95 }
+  state: [ 48, 55, 1.6 ]
+
+- shape: { name: 'circle', radius: 0.64 }
+  state: [ 22, 15, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.42 }
+  state: [ 58, 48, 0.8 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.17 }
+  state: [ 15, 22, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.59 }
+  state: [ 32, 38, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.86 }
+  state: [ 45, 52, 0.9 ]
+
+- shape: { name: 'circle', radius: 0.72 }
+  state: [ 8, 38, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.38 }
+  state: [ 35, 12, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 1.03 }
+  state: [ 52, 45, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.47 }
+  state: [ 18, 28, 1.0 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.92 }
+  state: [ 42, 18, 1.6 ]
+
+- shape: { name: 'circle', radius: 0.65 }
+  state: [ 28, 55, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.81 }
+  state: [ 55, 8, 0.9 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.53 }
+  state: [ 12, 32, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.76 }
+  state: [ 38, 42, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.44 }
+  state: [ 48, 25, 0.8 ]
+
+- shape: { name: 'circle', radius: 0.89 }
+  state: [ 22, 8, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.59 }
+  state: [ 58, 35, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.71 }
+  state: [ 15, 48, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.96 }
+  state: [ 32, 22, 1.6 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.42 }
+  state: [ 45, 45, 1.0 ]
+
+- shape: { name: 'circle', radius: 0.68 }
+  state: [ 8, 15, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.85 }
+  state: [ 35, 58, 0.9 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.55 }
+  state: [ 52, 12, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.78 }
+  state: [ 18, 38, 1.1 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.49 }
+  state: [ 42, 28, 0.8 ]
+
+- shape: { name: 'circle', radius: 0.91 }
+  state: [ 28, 45, 1.3 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.62 }
+  state: [ 55, 18, 1.4 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.74 }
+  state: [ 12, 55, 0.7 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.99 }
+  state: [ 38, 8, 1.6 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.46 }
+  state: [ 48, 42, 1.0 ]
+
+- shape: { name: 'circle', radius: 0.83 }
+  state: [ 22, 25, 1.2 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.57 }
+  state: [ 58, 52, 0.9 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.79 }
+  state: [ 15, 18, 1.5 ]
+  kinematics: { name: 'static' }
+- shape: { name: 'circle', radius: 0.51 }
+  state: [ 32, 48, 1.1 ]
+  kinematics: { name: 'static' }
