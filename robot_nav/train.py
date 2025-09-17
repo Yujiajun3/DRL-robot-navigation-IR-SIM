@@ -13,8 +13,8 @@ def main(args=None):
     max_action = 1  # maximum absolute value of output actions
     state_dim = 185  # number of input values in the neural network (vector length of state input)
     device = torch.device(
-        "cpu"
-        # "cuda"
+        # "cpu"
+        "cuda"
     )  # using cuda if it is available, cpu otherwise
     nr_eval_episodes = 10  # how many episodes to use to run evaluation
     max_epochs = 60  # max number of epochs
