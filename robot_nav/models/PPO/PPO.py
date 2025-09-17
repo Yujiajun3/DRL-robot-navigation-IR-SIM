@@ -219,7 +219,8 @@ class PPO:
         action_std_init=0.6,
         action_std_decay_rate=0.015,
         min_action_std=0.1,
-        device="cpu",
+        # device="cpu",
+        device="cuda",
         save_every=10,
         load_model=False,
         save_directory=Path("robot_nav/models/PPO/checkpoint"),
@@ -455,7 +456,7 @@ class PPO:
             min_values.append(min(bin) / 7)
 
         # Normalize to [0, 1] range
-        distance /= 10
+        distance /= 60
         lin_vel = action[0] * 2
         ang_vel = (action[1] + 1) / 2
         state = min_values + [distance, cos, sin] + [lin_vel, ang_vel]

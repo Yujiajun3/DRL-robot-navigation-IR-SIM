@@ -112,8 +112,8 @@ def test_marl_models():
     replay_buffer = get_buffer(
         model=test_model,
         sim=sim,
-        load_saved_buffer=False,
-        pretrain=False,
+        load_saved_buffer= True,
+        pretrain=True,
         pretraining_iterations=0,
         training_iterations=0,
         batch_size=0,
