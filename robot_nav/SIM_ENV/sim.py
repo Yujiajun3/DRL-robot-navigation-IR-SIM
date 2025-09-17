@@ -155,7 +155,7 @@ class SIM(SIM_ENV):
 
             velocity_proximity = 0.0
             if distance > 0.3:
-                velocity_proximity = 1.0 * lin_velocity * (pose_vector[0] * goal_vector[0] + pose_vector[1] * goal_vector[1]) / distance
+                velocity_proximity = 1.5 * lin_velocity * (pose_vector[0] * goal_vector[0] + pose_vector[1] * goal_vector[1]) / distance
             else:
                 velocity_proximity = 0.6
             return  - abs(action[1])**3*0.1 - r3(min(laser_scan)) / 400 +  0.1 * smoothness + 0.1 *  velocity_proximity

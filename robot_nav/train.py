@@ -13,18 +13,18 @@ def main(args=None):
     max_action = 1  # maximum absolute value of output actions
     state_dim = 185  # number of input values in the neural network (vector length of state input)
     device = torch.device(
-        # "cpu"
-        "cuda"
+        "cpu"
+        # "cuda"
     )  # using cuda if it is available, cpu otherwise
     nr_eval_episodes = 10  # how many episodes to use to run evaluation
     max_epochs = 60  # max number of epochs
     epoch = 0  # starting epoch number
     episodes_per_epoch = 70  # how many episodes to run in single epoch
     episode = 0  # starting episode number
-    train_every_n = 2  # train and update network parameters every n episodes
+    train_every_n = 20  # train and update network parameters every n episodes
     training_iterations = 300  # how many batches to use for single training cycle
     batch_size = 1024  # batch size for each training iteration
-    max_steps = 300  # maximum number of steps in single episode
+    max_steps = 1000  # maximum number of steps in single episode
     steps = 0  # starting step number
     load_saved_buffer = False  # whether to load experiences from assets/data.yml
     pretrain = False  # whether to use the loaded experiences to pre-train the model (load_saved_buffer must be True)
@@ -33,24 +33,25 @@ def main(args=None):
     )
     save_every = 5  # save the model every n training cycles
 
-    model = CNNTD3(
+    # model = CNNTD3(
+    #     state_dim=state_dim,
+    #     action_dim=action_dim,
+    #     max_action=max_action,
+    #     device=device,
+    #     save_every=save_every,
+    #     load_model=True,
+    #     model_name="CNNTD3",
+    # )  # instantiate a model
+
+    model = PPO(
         state_dim=state_dim,
         action_dim=action_dim,
         max_action=max_action,
         device=device,
         save_every=save_every,
         load_model=False,
-        model_name="CNNTD3",
-    )  # instantiate a model
-    # model = PPO(
-    #     state_dim=state_dim,
-    #     action_dim=action_dim,
-    #     max_action=max_action,
-    #     device=device,
-    #     save_every=save_every,
-    #     load_model=False,
-    #     model_name="PPO",
-    # )
+        model_name="PPO",
+    )
 
     sim = SIM(
         world_file="robot_world.yaml", disable_plotting=False

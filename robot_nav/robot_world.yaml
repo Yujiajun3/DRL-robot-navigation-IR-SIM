@@ -8,8 +8,8 @@ world:
 robot:
   - kinematics: {name: 'diff'}
     shape: {name: 'circle', radius: 0.4}
-    vel_min: [ 1.0, -1.0 ]
-    vel_max: [ 3.0, 1.0 ]
+    vel_min: [ 0.0, -0.5 ]
+    vel_max: [ 5.0, 0.5 ]
     state: [2, 2, 0, 0]
     goal: [50, 50, 0]
     arrive_mode: position
